@@ -1,10 +1,10 @@
 import os
 
-ENVIRONMENT = os.environ.get('ENVIRONMENT', False)
+ENVIRONMENT = os.environ.get('ENVIRONMENT', True)
 
 if ENVIRONMENT:
     try:
-        API_ID = int(os.environ.get('API_ID', 0))
+        API_ID = int(os.environ.get('API_ID', None))
     except ValueError:
         raise Exception("Your API_ID is not a valid integer.")
     API_HASH = os.environ.get('API_HASH', None)
@@ -17,11 +17,11 @@ if ENVIRONMENT:
         #MUST_JOIN = MUST_JOIN.replace("@", "")
 else:
     # Fill the Values
-    API_ID = 0
-    API_HASH = ""
-    BOT_TOKEN = ""
+    API_ID = "7215555"
+    API_HASH = "8f7004faa0ad4f25933a2443edb461a0"
+    BOT_TOKEN = "5018009842:AAGfbJx-yIEiUVOmLLiSVmoHafgRh2qmxDk"
     DATABASE_URL = ""
     DATABASE_URL = DATABASE_URL.replace("postgres", "postgresql")
-    MUST_JOIN = ""
+    MUST_JOIN = "@TeamUltronBOT"
     #if MUST_JOIN.startswith("@"):
        # MUST_JOIN = MUST_JOIN[1:]
