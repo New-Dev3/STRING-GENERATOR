@@ -1,5 +1,3 @@
-FROM New-Dev3/STRING-GENERATOR:slim-buster
-
 #clonning repo 
 
 RUN git clone https://github.com/New-Dev3/STRING-GENERATOR.git /root/generator.py
