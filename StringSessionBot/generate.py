@@ -39,7 +39,10 @@ async def main(_, msg):
 
 
 async def generate_session(bot, msg, telethon=False):
-    await msg.reply("Starting {} Session Generation...".format("Telethon" if telethon else "Pyrogram"))
+    await msg.reply(
+        f'Starting {"Telethon" if telethon else "Pyrogram"} Session Generation...'
+    )
+
     user_id = msg.chat.id
     api_id_msg = await bot.ask(user_id, 'Please send your `API_ID`', filters=filters.text)
     if await cancelled(api_id_msg):
@@ -113,7 +116,11 @@ async def generate_session(bot, msg, telethon=False):
     if telethon:
         string_session = client.session.save()
         try:
-            await client.send_message("me", "**{} - STRING SESSION** \n\n`{}`\n\n• __Dont Share String Session With Anyone__\n• __Dont Invite Anyone To Heroku__".format("TELETHON" if telethon else "PYROGRAM", string_session))
+            await client.send_message(
+                "me",
+                f'**{"TELETHON" if telethon else "PYROGRAM"} - STRING SESSION** \n\n`{string_session}`\n\n• __Dont Share String Session With Anyone__\n• __Dont Invite Anyone To Heroku__',
+            )
+
         except KeyError:
             pass
         try:
@@ -131,11 +138,18 @@ async def generate_session(bot, msg, telethon=False):
     else:
         string_session = await client.export_session_string()
         try:
-            await client.send_message("me", "**{} ~ STRING SESSION** \n\n`{}` \n\n• __Dont Share String Session With Anyone__\n• __Dont Invite Anyone To Heroku__".format("TELETHON" if telethon else "PYROGRAM", string_session))
+            await client.send_message(
+                "me",
+                f'**{"TELETHON" if telethon else "PYROGRAM"} ~ STRING SESSION** \n\n`{string_session}` \n\n• __Dont Share String Session With Anyone__\n• __Dont Invite Anyone To Heroku__',
+            )
+
         except KeyError:
             pass
     await client.disconnect()
-    await phone_code_msg.reply("Successfully String  Session Has Been Generated {} \n\nPlease check your saved messages!".format("TELETHON" if telethon else "PYROGRAM"), reply_markup=InlineKeyboardMarkup(Data.support_button))
+    await phone_code_msg.reply(
+        f'Successfully String  Session Has Been Generated {"TELETHON" if telethon else "PYROGRAM"} \n\nPlease check your saved messages!',
+        reply_markup=InlineKeyboardMarkup(Data.support_button),
+    )
 
 
 async def cancelled(msg):
